@@ -15,6 +15,8 @@ packages = {
     "boto3": "boto3",
     "aliyunsdkcore": "aliyun-python-sdk-core",
     "aliyunsdkalimt": "aliyun-python-sdk-alimt",
+    
+    "gpt4free": "g4f",
 }
 
 if __name__ == "__main__":

@@ -1981,7 +1981,7 @@
                         {
                             "key": "api_base",
                             "title": "API Base",
-                            "desc": "<ul><li>https://api.openai.com/v1</li><li>https://api.openai-proxy.com/v1</li><li>https://chatai.1rmb.tk/v1</li><li>...</li></ul>",
+                            "desc": "<ul><li>g4f => gpt4free<li><li>https://api.openai.com/v1</li><li>https://api.openai-proxy.com/v1</li><li>https://chatai.1rmb.tk/v1</li><li>...</li></ul>",
                             "type": "input",
                             "default": "https://api.openai.com/v1"
                         },
