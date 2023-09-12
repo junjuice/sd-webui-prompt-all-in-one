@@ -6,12 +6,16 @@ def gen_openai(messages, api_config):
     api_config = unprotected_translate_api_config('chatgpt_key', api_config)
     if api_config.get('api_base', 'https://api.openai.com/v1') == "g4f":
         import g4f
+        messages[1]["content"] = "「" + messages[1]["content"] + "」を30要素でプロンプトを生成してください。"
         completion = g4f.ChatCompletion.create(
-            model=g4f.models.gpt_35_turbo,
+            model="gpt-3.5-turbo",
             provider=g4f.Provider.DeepAi,
             messages=messages,
             stream=False
         )
+        if "「" in completion:
+            completion = completion.split("「")[1].split("」")[0]
+        completion = completion.replace(".", "")
         return completion
     else:
         import openai

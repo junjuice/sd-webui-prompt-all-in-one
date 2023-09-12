@@ -23,6 +23,8 @@ from scripts.physton_prompt.mbart50 import initialize as mbart50_initialize, tra
 from scripts.physton_prompt.get_group_tags import get_group_tags
 
 try:
+    import nest_asyncio
+    nest_asyncio.apply()
     from modules.shared import cmd_opts
 
     if cmd_opts.data_dir:
