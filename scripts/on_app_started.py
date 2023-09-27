@@ -86,7 +86,10 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
 
     @app.post("/physton_prompt/install_package")
     async def _install_package(request: Request):
-        data = await request.json()
+        try:
+            data = await request.json()
+        except:
+            data = {}
         if 'name' not in data:
             return {"result": get_lang('is_required', {'0': 'name'})}
         if 'package' not in data:
@@ -339,7 +342,7 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
     @app.get("/physton_prompt/styles")
     async def _styles(file: str):
         file_path = get_style_full_path(file)
-        if not os.path.exists(file_path):
+        if not file_path or not os.path.exists(file_path):
             return Response(status_code=404)
         return FileResponse(file_path, filename=os.path.basename(file_path))
 

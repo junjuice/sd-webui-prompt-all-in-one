@@ -290,15 +290,16 @@ export default {
             let indexes = []
             for (let index in this.tags) {
                 let tag = this.tags[index]
+                if (typeof tag['type'] === 'string' && tag.type === 'wrap') continue
                 let find = false
                 if (tag.isLora) {
-                    find = tag.loraName === name || tag.loraName === output_name
+                    find = tag.loraName === name || (output_name && tag.loraName === output_name)
                 } else if (tag.isLyco) {
-                    find = tag.lycoName === name || tag.lycoName === output_name
+                    find = tag.lycoName === name || (output_name && tag.lycoName === output_name)
                 } else if (tag.isEmbedding) {
-                    find = tag.embeddingName === name || tag.embeddingName === output_name
+                    find = tag.embeddingName === name || (output_name && tag.embeddingName === output_name)
                 } else {
-                    find = tag.originalValue === name || tag.originalValue === output_name
+                    find = tag.originalValue === name || (output_name && tag.originalValue === output_name)
                 }
                 if (find) {
                     indexes.push(index)
@@ -308,7 +309,10 @@ export default {
         },
         getGroupTagExtraNetworkStyle(data) {
             let indexes = this._groupTagsExtraNetworkTagsIndexes(data)
-            let style = {}
+            let style = {
+                width: this.extraNetworksWidth + 'px',
+                height: this.extraNetworksHeight + 'px',
+            }
             if (indexes.length) style['filter'] = 'grayscale(1)'
             return style
         },
@@ -344,7 +348,7 @@ export default {
             return {background: color}
         },
         onGroupExtraNetworkMouseEnter(e, name) {
-            this.$emit('showExtraNetworks', e.target, name, this.onLoraPopupUseKeywords, true)
+            this.$emit('showExtraNetworks', e.target, name, this.onLoraPopupUseKeywords, true, 'groupTags')
         },
         onGroupExtraNetworkMouseMove() {
         },
