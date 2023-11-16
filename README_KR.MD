@@ -26,6 +26,10 @@ sd-webui-prompt-all-in-one는[stable-diffusion-webui](https://github.com/AUTOMAT
 
 ----
 
+**📢📢📢 이 프로젝트는 stable-diffusion-webui에 의존하지 않고 독립적인 독립 실행 버전을 개발했습니다. 가벼우며 작고, 프롬프트 단어의 편집과 정리에 초점을 맞추었습니다. 사용 방법은 [Physton/sd-webui-prompt-all-in-one-app](https://github.com/Physton/sd-webui-prompt-all-in-one-app)에서 확인하실 수 있습니다.**
+
+----
+
 > 만약 이 확장 프로그램이 도움이 되었다면, 깃허브에서 별 한 개를 주시면 감사하겠습니다!
 > 또한 커피 한 잔 사주실 수도 있습니다: [donate](#기부)
 
@@ -157,8 +161,9 @@ sd-webui-prompt-all-in-one는[stable-diffusion-webui](https://github.com/AUTOMAT
 
 ### 커피 한 잔 사주세요
 
-| ko-fi (EN) | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
+| Buy me a coffee (EN) | [![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/physton) |
 |:-----------:| :----: |
+| ko-fi (EN) | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
 | Paypal (EN) | [https://paypal.me/physton](https://paypal.me/physton) |
 | 爱发电 (CN) | [https://afdian.net/a/physton/thank](https://afdian.net/a/physton/thank) |
 | 支付宝 (CN) | ![](https://s1.imagehub.cc/images/2023/07/05/alipay.jpeg) |

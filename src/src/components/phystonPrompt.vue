@@ -623,6 +623,14 @@ export default {
             type: Boolean,
             default: false,
         },
+        autoRemoveLoraBeforeComma: {
+            type: Boolean,
+            default: false,
+        },
+        autoRemoveLoraAfterComma: {
+            type: Boolean,
+            default: false,
+        },
         hideDefaultInput: {
             type: Boolean,
             default: false,
@@ -761,6 +769,9 @@ export default {
         },
     },
     mounted() {
+        if (this.$appMode) {
+            this.counterText = ''
+        }
         this.$nextTick(() => {
             this.initSortable()
             // autoSizeInput(this.$refs.promptTagAppend)
@@ -918,10 +929,13 @@ export default {
                     if (tag.disabled && !ignoreDisabled) return
 
                     let splitSymbol = ',' + (this.autoRemoveSpace ? '' : ' ')
+                    let splitSymbolDefault = splitSymbol
 
                     let nextTag = null
                     let nextIsWarp = false
                     let nextIsBreak = false
+                    let nextIsLora = false
+                    let nextIsLyco = false
                     // 获取下一个按钮
                     if (index + 1 < length) {
                         nextTag = tags[index + 1]
@@ -929,6 +943,10 @@ export default {
                             nextIsWarp = true
                         } else if (nextTag.value === 'BREAK') {
                             nextIsBreak = true
+                        } else if (nextTag.isLora) {
+                            nextIsLora = true
+                        } else if (nextTag.isLyco) {
+                            nextIsLyco = true
                         }
                     }
 
@@ -943,6 +961,10 @@ export default {
                                 splitSymbol = ''
                             }
                         }
+                    } else if (nextIsBreak) {
+                        splitSymbol = ' '
+                    } else if ((nextIsLora || nextIsLyco) && this.autoRemoveLoraBeforeComma) {
+                        splitSymbol = (this.autoRemoveSpace ? '' : ' ')
                     }
 
                     if (tag.value === 'BREAK') {
@@ -956,6 +978,10 @@ export default {
                     if (this.autoRemoveLastComma && index + 1 === length) {
                         // 如果是最后一个，那么就不需要加逗号
                         splitSymbol = ''
+                    }
+
+                    if (splitSymbol === splitSymbolDefault && (tag.isLora || tag.isLyco) && this.autoRemoveLoraAfterComma) {
+                        splitSymbol = (this.autoRemoveSpace ? '' : ' ')
                     }
 
                     prompt = tag.value + splitSymbol
@@ -1021,10 +1047,12 @@ export default {
             console.log('tags change', this.tags)
             this.updatePrompt()
             const steps = this.steps.querySelector('input[type="number"]').value
-            this.gradioAPI.tokenCounter(this.textarea.value, steps).then(res => {
-                const {token_count, max_length} = res
-                this.counterText = `${token_count}/${max_length}`
-            })
+            if (!this.$appMode) {
+                this.gradioAPI.tokenCounter(this.textarea.value, steps).then(res => {
+                    const {token_count, max_length} = res
+                    this.counterText = `${token_count}/${max_length}`
+                })
+            }
             if (this.tags.length) {
                 this.gradioAPI.getLatestHistory(this.historyKey).then(res => {
                     if (res && res.prompt === this.prompt) {

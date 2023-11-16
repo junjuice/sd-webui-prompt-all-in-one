@@ -52,6 +52,14 @@
                                      v-tooltip="getLang('use')">
                                     <icon-svg name="use"/>
                                 </div>
+                                <div class="header-btn-move-up hover-scale-140" @click="onMoveUpClick(index)"
+                                     v-tooltip="getLang('move_up')">
+                                    <icon-svg name="move-up"/>
+                                </div>
+                                <div class="header-btn-move-down hover-scale-140" @click="onMoveDownClick(index)"
+                                     v-tooltip="getLang('move_down')">
+                                    <icon-svg name="move-down"/>
+                                </div>
                             </div>
                         </div>
                         <div class="item-prompt">{{ item.prompt }}</div>
@@ -262,6 +270,34 @@ export default {
             if (!group) return
             this.hide()
             this.$emit('use', group.list[index])
+        },
+        onMoveUpClick(index) {
+            let group = this.favorites.find(item => item.key === this.favoriteKey)
+            if (!group) return
+            let favorite = group.list[index]
+            if (index === 0) return
+            this.gradioAPI.moveDownFavorite(this.favoriteKey, favorite.id).then(res => {
+            // this.gradioAPI.moveUpFavorite(this.favoriteKey, favorite.id).then(res => {
+                if (res) {
+                    group.list.splice(index, 1)
+                    group.list.splice(index - 1, 0, favorite)
+                    window.phystonPromptfavorites = this.favorites
+                }
+            })
+        },
+        onMoveDownClick(index) {
+            let group = this.favorites.find(item => item.key === this.favoriteKey)
+            if (!group) return
+            let favorite = group.list[index]
+            if (index === group.list.length - 1) return
+            this.gradioAPI.moveUpFavorite(this.favoriteKey, favorite.id).then(res => {
+            // this.gradioAPI.moveDownFavorite(this.favoriteKey, favorite.id).then(res => {
+                if (res) {
+                    group.list.splice(index, 1)
+                    group.list.splice(index + 1, 0, favorite)
+                    window.phystonPromptfavorites = this.favorites
+                }
+            })
         },
     }
 }

@@ -26,6 +26,10 @@ sd-webui-prompt-all-in-one - это расширение, основанное �
 
 ----
 
+**📢📢📢️ Этот проект разработал самостоятельную автономную версию, которая может работать без зависимости от stable-diffusion-webui. Он легкий и компактный, с фокусом на редактировании и организации ключевых слов. Посетите [Physton/sd-webui-prompt-all-in-one-app](https://github.com/Physton/sd-webui-prompt-all-in-one-app) для просмотра руководства по использованию.**
+
+----
+
 > Если вам понравилось это расширение, пожалуйста, поставьте звезду на GitHub!
 > Вы также можете угостить меня чашкой кофе: [donate](#пожертвования)
 
@@ -157,8 +161,9 @@ sd-webui-prompt-all-in-one - это расширение, основанное �
 
 ### Угостить меня чашкой кофе
 
-| ko-fi (EN) | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
+| Buy me a coffee (EN) | [![Buy me a coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/physton) |
 |:-----------:| :----: |
+| ko-fi (EN) | [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/physton) |
 | Paypal (EN) | [https://paypal.me/physton](https://paypal.me/physton) |
 | 爱发电 (CN) | [https://afdian.net/a/physton/thank](https://afdian.net/a/physton/thank) |
 | 支付宝 (CN) | ![](https://s1.imagehub.cc/images/2023/07/05/alipay.jpeg) |
